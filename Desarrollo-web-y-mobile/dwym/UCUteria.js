@@ -12,30 +12,22 @@ const PRODUCTS = [
 
 const ul = document.querySelector("ul");
 const form = document.querySelector("form");
+const buscar = document.getElementById("inputBusqueda")
 
-/*
-function render(lista){
-    ul.innerHTML = lista.map(p => `<li>${p.name} ${p.price} ${p.img}</li>`).join('');
-};
-form.addEventListener("click", buscar);
-function buscar(){
-    const listarFiltrados =[
-        { id: "c1", name: "Espresso",      price: 120, category: "Café",       img: "☕️", desc: "Corto e intenso." },
-        { id: "c2", name: "Latte",         price: 180, category: "Café",       img: "🥛☕️", desc: "Con leche espumada." },
-    ]
 
-    if (form.value == "on"){
-        render(listarFiltrados)
-    }
-     
-}
-render(PRODUCTS);
-*/
+buscar.addEventListener("input", () =>{
+
+    const busqueda = buscar.value.toLowerCase();
+
+    const filtrados = PRODUCTS.filter(p => 
+    p.name.toLowerCase().includes(busqueda) || 
+    p.desc.toLowerCase().includes(busqueda)
+);
+    render(filtrados);
+})
+
 
 function render(lista){
     ul.innerHTML = lista.map(p => `<li>${p.name} ${p.price} ${p.img}</li>`).join('');
 };
 render(PRODUCTS)
-form.addEventListener("click", () => {
-    
-});
